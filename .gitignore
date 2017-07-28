@@ -1,0 +1,4 @@
+node_modules
+*.log*
+packages/**/*.js
+!packages/*/src/**/*.js

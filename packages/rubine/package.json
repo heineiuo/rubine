@@ -1,0 +1,12 @@
+{
+	"name": "rubine",
+	"version": "0.0.2",
+	"description": "An error tracker for js",
+	"main": "index.js",
+	"keywords": [
+		"error",
+		"track"
+	],
+	"author": "@heineiuo",
+	"license": "MIT"
+}

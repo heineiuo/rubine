@@ -1,0 +1,30 @@
+{
+  "lollaVersion": "0.2.2",
+  "devPublicPath": "./",
+  "babel-loader": "babel-loader?-babelrc,+cacheDirectory,presets[]=es2015,presets[]=stage-0",
+  "modulesNeedBabel": [
+
+  ],
+  "port": 8085,
+  "externals": [
+    {
+      "commonjs": "react",
+      "root": "React",
+      "amd": "react"
+    }
+  ],
+  "ignorePackages": [
+    "//需要打包的加上//",
+    "//rubine"
+  ],
+  "packages": [
+    {
+      "name": "rubine",
+      "version": "0.0.1",
+      "main": "index.js",
+      "devEntry": "./packages/rubine/src/index.js",
+      "externals": [
+      ]
+    }
+  ]
+}
