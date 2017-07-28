@@ -3,7 +3,7 @@ const defaults = require('lodash/defaults')
 const result = require('lodash/result')
 
 const defaultOptions = {
-  viewPermission: (ctx) => new Promise(resolve => resolve()),
+  viewPermission: (ctx) => new Promise(resolve => resolve(true)),
   collectionName: 'rubine_track',
   schema: [
     {name: 'clientId', from: 'clientInfo.clientId'},
@@ -68,13 +68,14 @@ module.exports = module.exports.default = (options) => {
 
   router.all('/view', async (req, res, next) => {
     try {
+      const permission = await viewPermission(res.locals._rubineCtx)
       if (!permission) {
         const error = new Error('rubine: current user are not allowed to view error tracks')
         error.name = 'PermissionError'
         return next(error)
       }
 
-      const {filter, skip, limit, sort="-createTime"} = req.body
+      const {filter={}, skip=0, limit=20, sort={createTime: -1}} = req.body
 
       const trackDb = db.collection(collectionName)
       const data = await trackDb.find(filter).skip(skip).limit(limit).sort(sort).toArray()
